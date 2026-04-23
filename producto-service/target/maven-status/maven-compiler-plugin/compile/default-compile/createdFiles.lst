@@ -1,0 +1,5 @@
+pe\edu\upeu\productoservice\ProductoServiceApplication.class
+pe\edu\upeu\productoservice\service\ProductoService.class
+pe\edu\upeu\productoservice\model\Producto.class
+pe\edu\upeu\productoservice\repository\ProductoRepository.class
+pe\edu\upeu\productoservice\controller\ProductoController.class

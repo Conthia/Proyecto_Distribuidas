@@ -1,0 +1,5 @@
+pe\edu\upeu\pagoservice\controller\PagoController.class
+pe\edu\upeu\pagoservice\service\PagoService.class
+pe\edu\upeu\pagoservice\model\Pago.class
+pe\edu\upeu\pagoservice\PagoServiceApplication.class
+pe\edu\upeu\pagoservice\repository\PagoRepository.class

@@ -1,0 +1,36 @@
+name: producto-service
+
+services:
+  mysql-producto:
+    image: mysql:8.4
+    container_name: mysql-producto
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PRODUCTO_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${PRODUCTO_MYSQL_DATABASE}
+    volumes:
+      - mysql_producto_data:/var/lib/mysql
+    networks:
+      - ms-net
+
+  producto:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ms-producto
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql-producto
+    networks:
+      - ms-net
+
+volumes:
+  mysql_producto_data:
+
+networks:
+  ms-net:
+    external: true

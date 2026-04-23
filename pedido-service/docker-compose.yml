@@ -1,0 +1,36 @@
+name: pedido-service
+
+services:
+  mysql-pedido:
+    image: mysql:8.4
+    container_name: mysql-pedido
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PEDIDO_MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${PEDIDO_MYSQL_DATABASE}
+    volumes:
+      - mysql_pedido_data:/var/lib/mysql
+    networks:
+      - ms-net
+
+  pedido:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ms-pedido
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8092:8092"
+    depends_on:
+      - mysql-pedido
+    networks:
+      - ms-net
+
+volumes:
+  mysql_pedido_data:
+
+networks:
+  ms-net:
+    external: true

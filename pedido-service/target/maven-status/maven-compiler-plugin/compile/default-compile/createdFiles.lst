@@ -1,0 +1,8 @@
+pe\edu\upeu\pedidoservice\service\PedidoService.class
+pe\edu\upeu\pedidoservice\dto\ProductoDto.class
+pe\edu\upeu\pedidoservice\dto\PedidoResponse.class
+pe\edu\upeu\pedidoservice\PedidoServiceApplication.class
+pe\edu\upeu\pedidoservice\repository\PedidoRepository.class
+pe\edu\upeu\pedidoservice\controller\PedidoController.class
+pe\edu\upeu\pedidoservice\client\ProductoClient.class
+pe\edu\upeu\pedidoservice\model\Pedido.class
