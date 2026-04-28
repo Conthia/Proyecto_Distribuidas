@@ -20,6 +20,10 @@ public class PedidoService {
         return repository.findAll().stream().map(this::mapResponse).toList();
     }
 
+    public Optional<PedidoResponse> buscarPorId(Long id) {
+        return repository.findById(id).map(this::mapResponse);
+    }
+
     public PedidoResponse crear(Pedido pedido) {
         return mapResponse(repository.save(pedido));
     }
@@ -30,6 +34,13 @@ public class PedidoService {
             actual.setCantidad(pedido.getCantidad());
             return mapResponse(repository.save(actual));
         });
+    }
+
+    public boolean eliminar(Long id) {
+        return repository.findById(id).map(p -> {
+            repository.deleteById(id);
+            return true;
+        }).orElse(false);
     }
 
     private PedidoResponse mapResponse(Pedido pedido) {

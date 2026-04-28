@@ -22,7 +22,10 @@ services:
     env_file:
       - .env
     ports:
-      - "8102:8102"
+      - "8101:8101"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      CONFIG_SERVER_URL: http://config-server:7071
     depends_on:
       - mysql-pago
     networks:

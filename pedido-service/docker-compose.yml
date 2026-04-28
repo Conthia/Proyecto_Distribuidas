@@ -22,7 +22,10 @@ services:
     env_file:
       - .env
     ports:
-      - "8092:8092"
+      - "8091:8091"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      CONFIG_SERVER_URL: http://config-server:7071
     depends_on:
       - mysql-pedido
     networks:

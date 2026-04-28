@@ -12,6 +12,7 @@ import pe.edu.upeu.pagoservice.repository.PagoRepository;
 public class PagoService {
     private final PagoRepository repository;
     public List<Pago> listar() { return repository.findAll(); }
+    public Optional<Pago> buscarPorId(Long id) { return repository.findById(id); }
     public Pago crear(Pago pago) { return repository.save(pago); }
     public Optional<Pago> actualizar(Long id, Pago pago) {
         return repository.findById(id).map(actual -> {
@@ -21,5 +22,11 @@ public class PagoService {
             actual.setEstado(pago.getEstado());
             return repository.save(actual);
         });
+    }
+    public boolean eliminar(Long id) {
+        return repository.findById(id).map(p -> {
+            repository.deleteById(id);
+            return true;
+        }).orElse(false);
     }
 }

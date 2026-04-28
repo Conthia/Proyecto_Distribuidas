@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import pe.edu.upeu.pedidoservice.dto.ProductoDto;
 
-@FeignClient(name = "producto")
+@FeignClient(name = "producto", path = "/api/producto")
 public interface ProductoClient {
-    @GetMapping("/productos/{id}")
+    @GetMapping("/{id}")
     ProductoDto obtenerPorId(@PathVariable("id") Long id);
 }

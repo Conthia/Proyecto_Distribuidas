@@ -10,12 +10,14 @@ import pe.edu.upeu.pedidoservice.model.Pedido;
 import pe.edu.upeu.pedidoservice.service.PedidoService;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/api/pedido")
 @RequiredArgsConstructor
 public class PedidoController {
     private final PedidoService service;
     @GetMapping public ResponseEntity<List<PedidoResponse>> listar() { return ResponseEntity.ok(service.listar()); }
+    @GetMapping("/{id}") public ResponseEntity<PedidoResponse> buscarPorId(@PathVariable Long id) { return service.buscarPorId(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build()); }
     @PostMapping public ResponseEntity<PedidoResponse> crear(@RequestBody @Valid Pedido pedido) { return ResponseEntity.status(201).body(service.crear(pedido)); }
     @PutMapping("/{id}") public ResponseEntity<PedidoResponse> actualizar(@PathVariable Long id, @RequestBody @Valid Pedido pedido) { return service.actualizar(id, pedido).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build()); }
+    @DeleteMapping("/{id}") public ResponseEntity<Void> eliminar(@PathVariable Long id) { return service.eliminar(id) ? ResponseEntity.noContent().build() : ResponseEntity.notFound().build(); }
     @GetMapping("/ping") public String ping() { return "pedido-service OK"; }
 }

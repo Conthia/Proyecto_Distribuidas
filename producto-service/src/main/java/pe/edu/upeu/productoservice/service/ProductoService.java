@@ -23,5 +23,10 @@ public class ProductoService {
             return repository.save(actual);
         });
     }
-    public void eliminar(Long id) { repository.deleteById(id); }
+    public boolean eliminar(Long id) {
+        return repository.findById(id).map(p -> {
+            repository.deleteById(id);
+            return true;
+        }).orElse(false);
+    }
 }
