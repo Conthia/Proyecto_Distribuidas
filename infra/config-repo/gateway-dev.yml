@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: producto-route-v2
+          uri: lb://producto
+          predicates:
+            - Path=/api/producto/**
+        - id: pedido-route
+          uri: lb://pedido
+          predicates:
+            - Path=/api/pedido/**
+        - id: pago-route
+          uri: lb://pago
+          predicates:
+            - Path=/api/pago/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7081/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
